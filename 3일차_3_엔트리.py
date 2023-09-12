@@ -16,9 +16,10 @@ def calc(event):
    # label.config(text='결과'+str(eval(entry.get())))
 
 entry.bind("<Return>",calc)
-entry.grid(row=0,column=0,columnspan=4)
+entry.grid(row=0,column=0,columnspan=5)
 def funcClear():
     entry.delete(0,len(entry.get()))
+    label.config(text='')
 def func0():
     entry.insert(len(entry.get()),'0')
 def func1():
@@ -54,9 +55,22 @@ def funcmulti():
 def funcdivision():
     entry.insert(len(entry.get()),'/')
 
+def funcsq():
+    n=int(entry.get())
+    entry.delete(0,len(entry.get()))
+    n=(n,'*',n)
+    entry.insert(0,n)
+    funcequal()
+    
+
+def funcrest():
+    entry.insert(len(entry.get()),'%')
+
+def funcinput(string):
+    entry.insert(len(entry.get()),string)
 
 label = tk.Label(window,text='0',width=20,relief='solid')
-label.grid(row=1,column=0,columnspan=4)
+label.grid(row=1,column=0,columnspan=5)
 
 btnwidth=4
 btnheight=1
@@ -72,8 +86,12 @@ btn8.grid(row=2,column=1)
 btn9=tk.Button(window,text='9',command=func9,width=btnwidth)
 btn9.grid(row=2,column=2)
 
-btnplus=tk.Button(window,text='+',command=funcplus,width=btnwidth)
-btnplus.grid(row=2,column=3)
+btnmin=tk.Button(window,text='-',command=funcmin,width=btnwidth)
+btnmin.grid(row=2,column=3)
+
+btn00=tk.Button(window,text='%',command=funcrest,width=btnwidth)
+btn00.grid(row=2,column=4)
+
 
 
 
@@ -87,8 +105,10 @@ btn5.grid(row=3,column=1)
 btn6=tk.Button(window,text='6',command=func6,width=btnwidth)
 btn6.grid(row=3,column=2)
 
-btnmin=tk.Button(window,text='-',command=funcmin,width=btnwidth)
-btnmin.grid(row=3,column=3)
+btnplus=tk.Button(window,text='+',command=funcplus,width=btnwidth)
+btnplus.grid(row=3,column=3)
+btn01=tk.Button(window,text='**',command=funcsq,width=btnwidth)
+btn01.grid(row=3,column=4)
 
 
 
@@ -104,9 +124,12 @@ btn3.grid(row=4,column=2)
 btnmulti=tk.Button(window,text='*',command=funcmulti,width=btnwidth)
 btnmulti.grid(row=4,column=3)
 
+btn02=tk.Button(window,text='02',command=funcmin,width=btnwidth)
+btn02.grid(row=4,column=4)
+
+
 btnc=tk.Button(window,text='C',command=funcClear,width=btnwidth)
 btnc.grid(row=5,column=0)
-
 
 btn0=tk.Button(window,text='0',command=func0,width=btnwidth)
 btn0.grid(row=5,column=1)
@@ -116,5 +139,8 @@ btnequal.grid(row=5,column=2)
 
 btndivi=tk.Button(window,text='/',command=funcdivision,width=btnwidth)
 btndivi.grid(row=5,column=3)
+btn03=tk.Button(window,text='03',command=funcmin,width=btnwidth)
+btn03.grid(row=5,column=4)
+
 
 window.mainloop()
